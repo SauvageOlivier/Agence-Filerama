@@ -3,7 +3,7 @@
 
 {% block body %}
 <div class="container mt-4">
-	<h1>Gerer les biens</h1>
+	<h1 class="mb-4">Gerer les biens</h1>
 	<table class="table table-striped">
 		<thead>
 		<tr>
@@ -22,6 +22,10 @@
 	{% endfor %}
 		</tbody>
 	</table>
+	
+	<div class="text-right">
+		<a href="{{ path('admin.property.new') }}" class="btn btn-primary">Créer un nouveau bien</a>
+	</div>
 </div>
 
 
