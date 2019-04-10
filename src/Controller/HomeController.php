@@ -19,7 +19,7 @@
 		 * @param PropertyRepository $repository
 		 * @return Response
 		 */
-		public function index(PropertyRepository $repository) : Response
+		public function index( PropertyRepository $repository ):Response
 		{
 			$properties = $repository->findLatest();
 			return $this->render('pages/home.html.twig', [

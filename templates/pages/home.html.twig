@@ -2,10 +2,11 @@
 {% block title 'Agence Filerama' %}
 
 {% block body %}
-		<div class="jumbotron text-center">
-			<h1 class="mb-4">Agence Filerama</h1>
-			<p class="font-italic">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam animi assumenda, cum eveniet ex fuga</p>
-		</div>
+	<div class="jumbotron text-center">
+		<h1 class="mb-4">Agence Filerama</h1>
+		<p class="font-italic">You are a part of the Rebel Alliance and a traitor! Take her away! Hokey religions and
+		                       ancient weapons are no match for a good blaster at your side, kid.</p>
+	</div>
 	<div class="container">
 		<h2>Les derniers biens</h2>
 		<div class="row flex">
@@ -17,7 +18,9 @@
 								<a href="{{ path('property.show', {id: property.id, slug: property.slug}) }}">{{ property.title }}</a>
 							</h5>
 							<p class="card-text">{{ property.city }} ({{ property.postalCode }})</p>
-							<div class="text-primary" style="font-weight: bold; font-size: 2rem;">{{ property.formattedPrice }} €</div>
+							<div class="text-primary"
+							     style="font-weight: bold; font-size: 2rem;">{{ property.formattedPrice }} €
+							</div>
 						</div>
 					</div>
 				</div>

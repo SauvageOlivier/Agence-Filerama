@@ -27,7 +27,7 @@
 		/**
 		 * @return Property []
 		 */
-		public function findAllVisible() : array
+		public function findAllVisible():array
 		{
 			return $this->findVisibleQuery()
 				->getQuery()
@@ -37,7 +37,7 @@
 		/**
 		 * @return Property []
 		 */
-		public function findLatest() : array
+		public function findLatest():array
 		{
 			return $this->findVisibleQuery()
 				->setMaxResults(4)
@@ -45,7 +45,7 @@
 				->getResult();
 		}
 		
-		private function findVisibleQuery() : QueryBuilder
+		private function findVisibleQuery():QueryBuilder
 		{
 			return $this->createQueryBuilder('p')
 				->where('p.sold = false');

@@ -40,7 +40,7 @@
 		 * @Route("/biens", name="property.index")
 		 * @return Response
 		 */
-		public function index() : Response
+		public function index():Response
 		{
 			return $this->render('property/index.html.twig.', [
 				'current_menu' => 'properties'
@@ -51,9 +51,9 @@
 		 * @Route("/biens/{slug}-{id}", name="property.show", requirements={"slug":"[a-z0-9\-]*"})
 		 * @return Response
 		 */
-		public function show(Property $property, string $slug) : Response
+		public function show( Property $property, string $slug ):Response
 		{
-			if ($property->getSlug() !== $slug) {
+			if ( $property->getSlug() !== $slug ) {
 				return $this->redirectToRoute('property.show', [
 					'id' => $property->getId(),
 					'slug' => $property->getSlug()
