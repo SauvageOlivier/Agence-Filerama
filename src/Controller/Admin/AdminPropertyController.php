@@ -43,7 +43,8 @@
 		public function index()
 		{
 			$properties = $this->repository->findAll();
-			return $this->render('admin/property/index.html.twig', compact('properties'));
+			$current_menu = 'edit';
+			return $this->render('admin/property/index.html.twig', compact('properties', 'current_menu'));
 		}
 		
 		/**

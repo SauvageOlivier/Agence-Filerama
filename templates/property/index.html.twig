@@ -2,11 +2,18 @@
 {% block title 'Nos Biens' %}
 
 {% block body %}
-	<div class="container">
-		<div class="text-center">
-			<h1 class="my-4">Nos Biens</h1>
-			<p class="font-italic"> I want to come with you to Alderaan. There's nothing for me here now. I want to
-			                        learn the ways of the Force and be a Jedi, like my father before me.</p>
+	<div class="container text-center">
+		<h1 class="my-4">Nos Biens</h1>
+		<div class="row">
+			{% for property in properties %}
+				<div class="col-md-4">
+					{% include 'property/_property.html.twig' %}
+				</div>
+			{% endfor %}
+		</div>
+		
+		<div class="pagination">
+			{{ knp_pagination_render(properties) }}
 		</div>
 	</div>
 {% endblock %}
