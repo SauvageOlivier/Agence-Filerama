@@ -2,7 +2,9 @@
 	
 	namespace App\Form;
 	
+	use App\Entity\Option;
 	use App\Entity\PropertySearch;
+	use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 	use Symfony\Component\Form\AbstractType;
 	use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 	use Symfony\Component\Form\FormBuilderInterface;
@@ -14,7 +16,7 @@
 		 * @param FormBuilderInterface $builder
 		 * @param array $options
 		 */
-		public function buildForm( FormBuilderInterface $builder, array $options )
+		public function buildForm ( FormBuilderInterface $builder, array $options )
 		{
 			$builder
 				->add('maxPrice', IntegerType::class, [
@@ -30,13 +32,23 @@
 					'attr' => [
 						'placeholder' => 'Surface minimal'
 					]
+				])
+				->add('options', EntityType::class, [
+					'required' => false,
+					'label' => false,
+					'class' => Option::class,
+					'choice_label' => 'name',
+					'multiple' => true,
+					'attr' => [
+						'placeholder' => 'Options'
+					]
 				]);
 		}
 		
 		/**
 		 * @param OptionsResolver $resolver
 		 */
-		public function configureOptions( OptionsResolver $resolver )
+		public function configureOptions ( OptionsResolver $resolver )
 		{
 			$resolver->setDefaults([
 				'data_class' => PropertySearch::class,
@@ -45,7 +57,7 @@
 			]);
 		}
 		
-		public function getBlockPrefix()
+		public function getBlockPrefix ()
 		{
 			return '';
 		}

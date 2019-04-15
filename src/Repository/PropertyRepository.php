@@ -16,7 +16,7 @@
 		 * PropertyRepository constructor.
 		 * @param RegistryInterface $registry
 		 */
-		public function __construct( RegistryInterface $registry )
+		public function __construct ( RegistryInterface $registry )
 		{
 			parent::__construct($registry, Property::class);
 		}
@@ -25,20 +25,30 @@
 		 * @param PropertySearch $search
 		 * @return Query
 		 */
-		public function findAllVisibleQuery( PropertySearch $search ):query
+		public function findAllVisibleQuery ( PropertySearch $search ):query
 		{
 			$query = $this->findVisibleQuery();
 			
-			if ($search->getMaxPrice()) {
+			if ( $search->getMaxPrice() ) {
 				$query = $query
 					->andWhere('p.price <= :maxprice')
 					->setParameter('maxprice', $search->getMaxPrice());
 			}
 			
-			if ($search->getMinSurface()) {
+			if ( $search->getMinSurface() ) {
 				$query = $query
 					->andwhere('p.surface >= :minsurface')
 					->setParameter('minsurface', $search->getMinSurface());
+			}
+			
+			if ( $search->getOptions()->count() > 0 ) {
+				$k = 0;
+				foreach ( $search->getOptions() as $option ) {
+					$k++;
+					$query = $query
+						->andwhere(":option$k MEMBER OF p.options")
+						->setParameter("option$k", $option);
+				}
 			}
 			
 			return $query->getQuery();
@@ -47,7 +57,7 @@
 		/**
 		 * @return Property []
 		 */
-		public function findLatest():array
+		public function findLatest ():array
 		{
 			return $this->findVisibleQuery()
 				->setMaxResults(4)
@@ -58,7 +68,7 @@
 		/**
 		 * @return QueryBuilder
 		 */
-		private function findVisibleQuery():QueryBuilder
+		private function findVisibleQuery ():QueryBuilder
 		{
 			return $this->createQueryBuilder('p')
 				->where('p.sold = false');
